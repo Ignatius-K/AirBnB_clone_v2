@@ -114,17 +114,56 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_create(self, args):
-        """ Create an object of any class"""
-        if not args:
-            print("** class name missing **")
+        class_name, class_attr = self.format_args(args)
+        if not class_name:
             return
-        elif args not in HBNBCommand.classes:
-            print("** class doesn't exist **")
-            return
-        new_instance = HBNBCommand.classes[args]()
+        new_instance = HBNBCommand.classes[class_name]()
+        for attr_name, attr_value in class_attr.items():
+            try:
+                new_instance.__setattr__(attr_name, attr_value)
+            except Exception:
+                continue
         storage.save()
         print(new_instance.id)
         storage.save()
+
+    def format_args(self, args: str) -> tuple:
+        """Formats args to required type"""
+        arg_collection = args.split()
+        if len(arg_collection) == 0:
+            self.help_create()
+            return None, {}
+        if arg_collection[0] not in HBNBCommand.classes:
+            print("** class name missing **")
+            return None, {}
+        return arg_collection[0], {param.split("=")[0]: self.validateParamValue(param.split("=")[1]) for param in arg_collection[1:] if self.isCreateParamVaid(param=param)}
+
+    def isCreateParamVaid(self, param: str) -> bool:
+        return True if len(param.split("=")) == 2 else False
+
+    def validateParamValue(self, value: str):
+        value = value.strip('"').replace("_", " ")
+        if (value.isdigit() and not value.startswith('0')):
+            return int(value)
+        if len(value.split('.')) > 1:
+            try:
+                return float(value)
+            except Exception:
+                pass
+        return value
+
+    # def do_create(self, args):
+    #     """ Create an object of any class"""
+    #     if not args:
+    #         print("** class name missing **")
+    #         return
+    #     elif args not in HBNBCommand.classes:
+    #         print("** class doesn't exist **")
+    #         return
+    #     new_instance = HBNBCommand.classes[args]()
+    #     storage.save()
+    #     print(new_instance.id)
+    #     storage.save()
 
     def help_create(self):
         """ Help information for the create method """
