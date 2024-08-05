@@ -9,7 +9,7 @@ Notes:
     * more info from: https://www.fabfile.org/
 """
 
-from fabric.api import local, parallel, put, run, task, env
+from fabric.api import local, parallel, put, run, sudo, task, env
 from datetime import datetime
 import os
 
@@ -61,14 +61,14 @@ def do_deploy(archive_path):
     upload_dir = '/tmp'
     filename = archive_path.split("/")[-1]
     uploaded_file = f'{upload_dir}/{filename}'
-    result = put(archive_path, uploaded_file)
+    result = put(archive_path, uploaded_file, use_sudo=True)
     if result.failed:
         print("Upload archive failed")
         return None
 
     # Uncompress archive
     uploaded_code = f'/data/web_static/releases/{filename.split(".")[0]}'
-    result = run(f'mkdir -p {uploaded_code} && '+
+    result = sudo(f'mkdir -p {uploaded_code} && '+
                  f'tar --strip-components=1 -xvzf {result[0]} -C {uploaded_code}'
                 )
     if result.failed:
@@ -78,7 +78,7 @@ def do_deploy(archive_path):
 
     # deploy
     app_sys_link = '/data/web_static/current'
-    result = run(f'unlink {app_sys_link} &&'
+    result = sudo(f'unlink {app_sys_link} &&'
                  +f'ln -s {uploaded_code} {app_sys_link}'
                  )
     if result.failed:
