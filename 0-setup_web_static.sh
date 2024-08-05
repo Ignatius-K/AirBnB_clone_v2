@@ -94,3 +94,5 @@ then
 else
 	echo "Nginx configuration test failed"
 fi
+
+exit 0
