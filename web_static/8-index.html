@@ -1,129 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>AirBnB clone</title>
-
-		<link rel="shortcut icon" href="images/icon.ico" >
-
-		<link rel="stylesheet" href="styles/4-common.css"/>
-		<link rel="stylesheet" href="styles/3-header.css"/>
-		<link rel="stylesheet" href="styles/3-footer.css"/>
-		<link rel="stylesheet" href="styles/6-filters.css"/>
-		<link rel="stylesheet" href="styles/8-places.css"/>
+		<meta charset="UTF-8">
+		<title>AirBnB Clone</title>
+		<link rel="stylesheet" href="styles/4-common.css" media="all">
+		<link rel="stylesheet" href="styles/3-header.css" media="all">
+		<link rel="stylesheet" href="styles/3-footer.css" media="all">
+		<link rel="stylesheet" href="styles/6-filters.css" media="all">
+		<link rel="stylesheet" href="styles/8-places.css" media="all">
 	</head>
-    <body>
+	<body>
 		<header>
-			<div id="header_logo"></div>
+			<div class="logo"></div>
+			<h1>hbnb</h1>
 		</header>
 		<div class="container">
 			<section class="filters">
-				<button>Search</button>
-				<div class="locations">
+				<div class="filter locations">
 					<h3>States</h3>
-					<h4>California, Arizona...</h4>
+					<h4>California, Arizona,...</h4>
 					<ul class="popover">
-						<li><h2>Arizona</h2>
+						<li>
+							<h2>Arizona:</h2>
 							<ul>
-								<li><h4>Page</h4></li>
-								<li><h4>Page2</h4></li>
-							</ul></li>
-						<li><h2>California</h2>
+								<li>City 1</li>
+								<li>City 2</li>
+								<li>City 3</li>
+							</ul>
+						</li>
+						<li>
+							<h2>California:</h2>
 							<ul>
-								<li><h4>San Francisco</h4></li>
-								<li><h4>Los Altos</h4></li>
-							</ul></li>
+								<li>City I</li>
+								<li>City II</li>
+							</ul>
+						</li>
 					</ul>
 				</div>
-				<div class="amenities">
+				<div class="filter amenities">
 					<h3>Amenities</h3>
-					<h4>Internet, Kitchen...</h4>
+					<h4>Internet, Kitchen,...</h4>
 					<ul class="popover">
-						<li><h4>Internet</h4></li>
-						<li><h4>TV</h4></li>
-						<li><h4>Kitchen</h4></li>
-						<li><h4>Iron</h4></li>
+						<li>City 1</li>
+						<li>City 2</li>
+						<li>City 3</li>
 					</ul>
 				</div>
-
+				<button>Search</button>
 			</section>
 			<section class="places">
 				<h1>Places</h1>
-				<article>
-					<div class="headline">
-						<h2>My home</h2>
-						<div class="price_by_night">$80</div>
-					</div>
-					<div class="information">
-						<div class="max_guest">
-							<div class="guest_icon"></div>
-							<p>2 Guests</p>
+				<div class="places--container">
+					<article>
+						<div class="place_header">
+							<h2>My home</h2>
+							<div class="price_by_night">$90</div>
 						</div>
-						<div class="number_rooms">
-							<div class="bed_icon"></div>
-							<p>1 Bedroom</p>
+						<div class="information">
+							<div class="max_guest">
+								<div class="information_icon"></div>
+								<p>2 Guests</p>
+							</div>
+							<div class="number_rooms">
+
+								<div class="information_icon"></div>
+								<p>1 Bedroom</p>
+							</div>
+							<div class="number_bathrooms">
+								<div class="information_icon"></div>
+								<p>1 Bathroom</p>
+							</div>
 						</div>
-						 <div class="number_bathrooms">
-							<div class="bath_icon"></div>
-							<p>1 Bathroom</p>
+						<div class="user">
+							Owner: <span>Ignatius Kisekka</span>
 						</div>
-					</div>
-					<div class="user"><b>Owner</b>: John Lennon</div>
-					<div class="description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                    </div>
-				</article>
-				<article>
-					<div class="headline">
-						<h2>Tiny house</h2>
-						<div class="price_by_night">$65</div>
-					</div>
-					<div class="information">
-                        <div class="max_guest">
-                            <div class="guest_icon"></div>
-                            <p>4 Guests</p>
-                        </div>
-                        <div class="number_rooms">
-                            <div class="bed_icon"></div>
-                            <p>2 Bedroom</p>
-                        </div>
-                         <div class="number_bathrooms">
-                            <div class="bath_icon"></div>
-                            <p>1 Bathroom</p>
-                        </div>
-                    </div>
-					<div class="user"><b>Owner</b>: Adrienne</div>
-					<div class="description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    </div>
-				</article>
-				<article>
-					<div class="headline">
-						<h2>A suite</h2>
-						<div class="price_by_night">$180</div>
-					</div>
-					<div class="information">
-                        <div class="max_guest">
-                            <div class="guest_icon"></div>
-                            <p>5 Guests</p>
-                        </div>
-                        <div class="number_rooms">
-                            <div class="bed_icon"></div>
-                            <p>3 Bedroom</p>
-                        </div>
-                         <div class="number_bathrooms">
-                            <div class="bath_icon"></div>
-                            <p>2 Bathroom</p>
-                        </div>
-                    </div>
-					<div class="user"><b>Owner</b>: Betty Holberton</div>
-					<div class="description">
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-					</div>
-				</article>
+						<div class="description">
+							Lorem aliquam eum nam obcaecati quidem. Voluptas sunt amet facilis at voluptate. Quia perferendis officiis quibusdam odit nobis Rem repudiandae nisi facere dolorum et Odit accusantium earum tenetur adipisci consequuntur?
+						</div>
+					</article>
+
+
+					<article>
+						<div class="place_header">
+							<h2>My home</h2>
+							<div class="price_by_night">$90</div>
+						</div>
+						<div class="information">
+							<div class="max_guest">
+								<div class="information_icon"></div>
+								<p>2 Guests</p>
+							</div>
+							<div class="number_rooms">
+
+								<div class="information_icon"></div>
+								<p>1 Bedroom</p>
+							</div>
+							<div class="number_bathrooms">
+								<div class="information_icon"></div>
+								<p>1 Bathroom</p>
+							</div>
+						</div>
+						<div class="user">
+							Owner: <span>Ignatius Kisekka</span>
+						</div>
+						<div class="description">
+							Lorem aliquam eum nam obcaecati quidem. Voluptas sunt amet facilis at voluptate. sequuntur?
+						</div>
+					</article>
+					<article>
+						<div class="place_header">
+							<h2>My home</h2>
+							<div class="price_by_night">$90</div>
+						</div>
+						<div class="information">
+							<div class="max_guest">
+								<div class="information_icon"></div>
+								<p>2 Guests</p>
+							</div>
+							<div class="number_rooms">
+
+								<div class="information_icon"></div>
+								<p>1 Bedroom</p>
+							</div>
+							<div class="number_bathrooms">
+								<div class="information_icon"></div>
+								<p>1 Bathroom</p>
+							</div>
+						</div>
+						<div class="user">
+							Owner: <span>Ignatius Kisekka</span>
+						</div>
+						<div class="description">
+							Lorem aliquam eum nam obcaecati quidem. Voluptas sunt amet facilis at voluptate. Quia perferendis officiis quibusdam odit nobis Rem repudiandae nisi facere dolorum et Odit accusantium earum tenetur adipisci consequuntur?
+						</div>
+					</article>
+				</div>
 			</section>
 		</div>
-		<footer>
-			<p>Holberton School</p>
-		</footer>
+		<footer>Best School</footer>
 	</body>
 </html>
