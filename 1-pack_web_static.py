@@ -33,5 +33,5 @@ def do_pack():
     if result.failed:
         return None
     archive_path = f'web_static_{datetime.now().strftime("%Y%m%d%H%M%S")}.tgz'
-    result = local(f'tar -cvf {archive_dir}/{archive_path} web_static/')
+    result = local(f'tar -cvzf {archive_dir}/{archive_path} web_static/')
     return None if result.failed else result
