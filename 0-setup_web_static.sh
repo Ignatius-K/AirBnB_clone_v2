@@ -86,8 +86,7 @@ fi
 sudo ln -s $HBNB_STATIC_SERVER_FILE $HBNB_STATIC_SERVER_FILE_SYS_LINK
 
 #3. Test new site configuration
-sudo nginx -t
-if [ $? -eq 0 ]
+if sudo nginx -t
 then
 	echo -e "Configuration test passed\nRestarting Nginx ........."
 	sudo systemctl restart nginx
