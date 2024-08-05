@@ -15,7 +15,7 @@ import os
 
 env.hosts = [
     '54.152.221.218',
-    '54.146.70.187'
+    # '54.146.70.187'
 ]
 
 
@@ -78,9 +78,8 @@ def do_deploy(archive_path):
 
     # deploy
     app_sys_link = '/data/web_static/current'
-    result = sudo(f'unlink {app_sys_link} &&'
-                 +f'ln -s {uploaded_code} {app_sys_link}'
-                 )
+    sudo(f'unlink {app_sys_link}', warn_only=True)
+    result = sudo(f'ln -s {uploaded_code} {app_sys_link}')
     if result.failed:
         print('Failed to deploy')
         return False
