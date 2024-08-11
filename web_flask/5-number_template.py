@@ -54,7 +54,7 @@ def is_number(n):
 @dataclass(frozen=True)
 class NTdata:
     """Number template data"""
-    number: int
+    number: int = 0
 
 
 @app.route('/number_template/<int:n>')
