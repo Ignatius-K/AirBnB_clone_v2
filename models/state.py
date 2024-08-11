@@ -3,6 +3,7 @@
 from enum import Enum
 from typing import List
 
+import os
 import models
 from sqlalchemy import String, Column
 from sqlalchemy.orm import relationship
@@ -18,8 +19,9 @@ class StateSchema(Enum):
 
 class State(BaseModel, Base):
     """ State class """
+    is_database = os.getenv('HBNB_TYPE_STORAGE') == 'db'
 
-    if models.STORAGE_TYPE.DATABASE:
+    if is_database:
         __tablename__ = StateSchema.TABLE_NAME.value
         name = Column(StateSchema.NAME.value, String(128), nullable=False)
         # Relationships
@@ -36,7 +38,7 @@ class State(BaseModel, Base):
 
     @property
     def cities(self) -> List[City]:
-        if models.STORAGE_TYPE.DATABASE:
+        if self.is_database:
             return self._cities
         else:
             return list(
