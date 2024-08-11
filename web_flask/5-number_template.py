@@ -51,16 +51,10 @@ def is_number(n):
     return f'{n} is a number'
 
 
-@dataclass(frozen=True)
-class NTdata:
-    """Number template data"""
-    number: int = 0
-
-
 @app.route('/number_template/<int:n>')
 def number_template(n):
     '''Ooooh, its a number'''
-    return render_template('5-number.html', template_data=NTdata(n))
+    return render_template('5-number.html', template_data=n)
 
 
 if __name__ == '__main__':
