@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<HTML lang="en">
+    <HEAD>
+        <TITLE>HBNB</TITLE>
+    </HEAD>
+    <BODY>
+		<H1>
+            {%- if template_data is divisibleby(2) -%}
+                Number: {{ template_data }} is even
+            {%- else -%}
+                Number: {{ template_data }} is odd
+            {%- endif -%}
+        </H1>
+    </BODY>
+</HTML>
