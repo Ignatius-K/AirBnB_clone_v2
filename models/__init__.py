@@ -10,7 +10,7 @@ class STORAGE_TYPE(Enum):
     FILE = 'fs'
 
 
-is_database = STORAGE_TYPE.DATABASE == os.getenv('HBNB_TYPE_STORAGE')
+is_database = STORAGE_TYPE.DATABASE.value == os.getenv('HBNB_TYPE_STORAGE')
 if is_database:
     from models.engine.db_storage import DBStorage
     storage = DBStorage()
