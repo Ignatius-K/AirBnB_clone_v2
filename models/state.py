@@ -11,39 +11,27 @@ from models.base_model import BaseModel, Base
 from models.city import City
 
 
-class StateSchema(Enum):
-    """Define State Schema"""
-    TABLE_NAME = 'states'
-    NAME = 'name'
-
-
 class State(BaseModel, Base):
-    """ State class """
-    is_database = os.getenv('HBNB_TYPE_STORAGE') == 'db'
+    """Representation of state """
 
-    if is_database:
-        __tablename__ = StateSchema.TABLE_NAME.value
-        name = Column(StateSchema.NAME.value, String(128), nullable=False)
-        # Relationships
-        _cities = relationship(
-            'City',
-            back_populates='state',
-            cascade='all, delete-orphan'
-        )
+    __tablename__ = 'states'
+    if models.is_database:
+        name = Column(String(128), nullable=False)
+        cities = relationship("City", backref="state")
     else:
         name = ""
 
-        def __init__(self, *args, **kwargs):
-            super().__init__(*args, **kwargs)
+    def __init__(self, *args, **kwargs):
+        """initializes state"""
+        super().__init__(*args, **kwargs)
 
-    @property
-    def cities(self) -> List[City]:
-        if self.is_database:
-            return self._cities
-        else:
-            return list(
-                filter(
-                    lambda x: x.state_id == self.id,
-                    models.storage.all(City)
-                )
-            )
+    if not models.is_database:
+        @property
+        def cities(self):
+            """getter for list of city instances related to the state"""
+            city_list = []
+            all_cities = models.storage.all(City)
+            for city in all_cities.values():
+                if city.state_id == self.id:
+                    city_list.append(city)
+            return city_list

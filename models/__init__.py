@@ -1,19 +1,21 @@
 #!/usr/bin/python3
 """This module instantiates an object of class FileStorage"""
-from models.engine.file_storage import FileStorage
-from models.engine.db_storage import DBStorage
 import os
 from enum import Enum
 
 
 class STORAGE_TYPE(Enum):
     """Configures the storage"""
-    DATABASE = os.getenv('HBNB_TYPE_STORAGE') == 'db'
+    DATABASE = 'db'
+    FILE = 'fs'
 
 
-if STORAGE_TYPE.DATABASE:
+is_database = STORAGE_TYPE.DATABASE == os.getenv('HBNB_TYPE_STORAGE')
+if is_database:
+    from models.engine.db_storage import DBStorage
     storage = DBStorage()
 else:
+    from models.engine.file_storage import FileStorage
     storage = FileStorage()
 
 storage.reload()

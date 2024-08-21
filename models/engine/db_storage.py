@@ -62,8 +62,7 @@ class DBStorage:
             f'{DB_CONFIG.USER.value}:{DB_CONFIG.USER_PASSWD.value}@' +
             f'{DB_CONFIG.HOST.value}/{DB_CONFIG.NAME.value}',
             connect_args={'ssl_disabled': True},
-            pool_pre_ping=True,
-            echo=True
+            pool_pre_ping=True
         )
         if DB_CONFIG.ENVIRONMENT.value == ENVIRONMENT.TEST.value:
             Base.metadata.drop_all(self.__engine)
@@ -118,4 +117,5 @@ class DBStorage:
 
     def close(self):
         """Close session"""
-        self.__session.close()
+        # self.__session.close()
+        self.__session.remove()
