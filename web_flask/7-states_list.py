@@ -10,7 +10,6 @@ Routes:
 Notes:
     - strict_slashes: set to False
 """
-from typing import List
 from flask import Flask, render_template
 from models import storage
 from models.state import State
@@ -22,7 +21,10 @@ app = Flask(__name__)
 def getStates():
     states = storage.all(State)
     print(len(states))
-    return render_template(template_name_or_list='7-states_list.html', context=states)
+    return render_template(
+        template_name_or_list='7-states_list.html',
+        context=states
+    )
 
 
 if __name__ == '__main__':
