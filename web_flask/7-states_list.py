@@ -20,11 +20,16 @@ app = Flask(__name__)
 @app.route('/states_list', strict_slashes=False)
 def getStates():
     states = storage.all(State)
-    print(len(states))
     return render_template(
         template_name_or_list='7-states_list.html',
         context=states
     )
+
+
+@app.teardown_appcontext
+def clean_up(response_or_exc):
+    if storage is not None:
+        storage.close()
 
 
 if __name__ == '__main__':
