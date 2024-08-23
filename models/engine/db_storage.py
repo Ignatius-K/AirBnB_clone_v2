@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """This module defines a class to manage database storage for hbnb clone"""
 
+from typing import Dict, List, Optional, Type, TypeVar
 from sqlalchemy import create_engine
 from os import getenv
 from enum import Enum
@@ -18,6 +19,7 @@ from models.user import User
 classes = {"Amenity": Amenity, "City": City,
            "Place": Place, "Review": Review, "State": State, "User": User}
 
+T = TypeVar('T')
 
 class DBStorage:
     """interaacts with the MySQL database"""
@@ -39,7 +41,7 @@ class DBStorage:
         if HBNB_ENV == "test":
             Base.metadata.drop_all(self.__engine)
 
-    def all(self, cls=None):
+    def all(self, cls : Optional[Type[T]]=None) -> Dict[str, T]:
         """query on the current database session"""
         new_dict = {}
         for clss in classes:
