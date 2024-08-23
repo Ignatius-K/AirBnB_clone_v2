@@ -27,7 +27,7 @@ def getStates():
 
 
 @app.teardown_appcontext
-def clean_up(response_or_exc):
+def clean_up(_):
     if storage is not None:
         storage.close()
 
