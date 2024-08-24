@@ -79,3 +79,7 @@ ul {
 .filter:hover .popover {
 	display: block;
 }
+
+.amenities .popover li {
+	margin-bottom: 0.6rem;
+}
