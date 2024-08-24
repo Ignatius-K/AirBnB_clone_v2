@@ -19,11 +19,11 @@
 					<h3>States</h3>
 					<h4>&nbsp;</h4>
 					<ul class="popover">
-						{% for key, state in states.items()|sort(attribute='name') %}
+						{% for state in states.values() | sort(attribute='name') %}
 						<li>
 								<h2>{{ state.name }}</h2>
 								<ul>
-									{% for city in state.cities|sort(attribute='name') %}
+									{% for city in state.cities | sort(attribute='name') %}
 										<li>{{ city.name }}</li>
 									{% endfor %}
 								</ul>
@@ -35,10 +35,8 @@
 					<h3>Amenities</h3>
 					<h4>&nbsp;</h4>
 					<ul class="popover">
-						{% for key, amenity in amenities.items()|sort(attribute='name') %}
+						{% for amenity in amenities.values() | sort(attribute='name') %}
 							<li>{{ amenity.name }}</li>
-						{% else %}
-							<li>No amenities found</li>
 						{% endfor %}
 					</ul>
 				</div>
